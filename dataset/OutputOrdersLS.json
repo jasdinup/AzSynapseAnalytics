@@ -1,0 +1,26 @@
+{
+	"name": "OutputOrdersLS",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LinkedSrvc",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": {
+					"value": "@concat(pipeline().TriggerTime,'.txt')",
+					"type": "Expression"
+				},
+				"container": "orderscntr"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"quoteChar": "\""
+		},
+		"schema": []
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

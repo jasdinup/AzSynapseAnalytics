@@ -1,0 +1,17 @@
+{
+	"name": "svrless",
+	"properties": {
+		"content": {
+			"query": "-- This is auto-generated code\nSELECT\n    TOP 100 *\nFROM\n    OPENROWSET(\n        BULK 'https://jddlgen2.dfs.core.windows.net/fsjd279/NYCTripSmall.parquet',\n        FORMAT = 'PARQUET'\n    ) AS [result]\n\n\nCREATE DATABASE DataExplorationDB COLLATE Latin1_General_100_BIN2_UTF8 --serverless database",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "master",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

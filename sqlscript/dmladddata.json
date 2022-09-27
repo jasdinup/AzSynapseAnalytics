@@ -1,0 +1,18 @@
+{
+	"name": "dmladddata",
+	"properties": {
+		"description": "to add data",
+		"content": {
+			"query": "SET NOCOUNT ON   DECLARE @i INT     \nSET @i = 1   \nDECLARE @date DATETIME SET @date = dateadd(mi,@i,'2017-02-04')  \nWHILE (@i <= 60)   \nBEGIN    \nINSERT INTO [Orders2] (OrderDate) SELECT @date   SET @i = @i+1;   \nEND\n\nSET NOCOUNT ON   DECLARE @i INT     SET @i = 1   \nDECLARE @date DATETIME SET @date = dateadd(mi,@i,'2017-02-05')  \nWHILE (@i <= 10)   \nBEGIN     \nINSERT INTO [OrdersPartition] (OrderDate) SELECT @date            \nINSERT INTO [OrdersPartition] (OrderDate) SELECT dateadd(week,1,@date)    \nINSERT INTO [OrdersPartition] (OrderDate) SELECT dateadd(week,2,@date)    \nINSERT INTO [OrdersPartition] (OrderDate) SELECT dateadd(week,3,@date)    \nINSERT INTO [OrdersPartition] (OrderDate) SELECT dateadd(week,4,@date)    \nINSERT INTO [OrdersPartition] (OrderDate) SELECT dateadd(week,5,@date)    \nSET @i = @i+1;   \nEND    \nSELECT COUNT(*) FROM OrdersPartition",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "jddedsqlpool279",
+				"poolName": "jddedsqlpool279"
+			},
+			"resultLimit": -1
+		},
+		"type": "SqlQuery"
+	}
+}

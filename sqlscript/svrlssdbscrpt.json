@@ -1,0 +1,17 @@
+{
+	"name": "svrlssdbscrpt",
+	"properties": {
+		"content": {
+			"query": "CREATE EXTERNAL DATA SOURCE JDDataLake\nWITH ( LOCATION = 'https://jddlgen2.blob.core.windows.net')\n\nSELECT\n    TOP 100 *\nFROM\n    OPENROWSET(\n        BULK 'fsjd279/NYCTripSmall.parquet',\n        DATA_SOURCE = 'JDDataLake1',\n        FORMAT = 'PARQUET'\n    ) AS [result]\n\n    drop external data source JDDataLake1",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "DataExplorationDB",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}
