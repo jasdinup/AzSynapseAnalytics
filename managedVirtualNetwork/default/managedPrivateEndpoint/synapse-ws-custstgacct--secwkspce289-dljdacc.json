@@ -1,0 +1,10 @@
+{
+	"name": "synapse-ws-custstgacct--secwkspce289-dljdacc",
+	"properties": {
+		"privateLinkResourceId": "/subscriptions/e2d3f9d2-fe25-4a6a-bccd-16e5d2933d82/resourceGroups/rgday3/providers/Microsoft.Storage/storageAccounts/dljdacc",
+		"groupId": "dfs",
+		"fqdns": [
+			"dljdacc.dfs.core.windows.net"
+		]
+	}
+}

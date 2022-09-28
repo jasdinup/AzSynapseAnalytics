@@ -1,0 +1,147 @@
+{
+	"name": "PySparkNbk",
+	"properties": {
+		"description": "python spark notebook",
+		"nbformat": 4,
+		"nbformat_minor": 2,
+		"bigDataPool": {
+			"referenceName": "JDSparkPool289",
+			"type": "BigDataPoolReference"
+		},
+		"sessionProperties": {
+			"driverMemory": "28g",
+			"driverCores": 4,
+			"executorMemory": "28g",
+			"executorCores": 4,
+			"numExecutors": 2,
+			"runAsWorkspaceSystemIdentity": false,
+			"conf": {
+				"spark.dynamicAllocation.enabled": "false",
+				"spark.dynamicAllocation.minExecutors": "2",
+				"spark.dynamicAllocation.maxExecutors": "2",
+				"spark.autotune.trackingId": "1aea67e1-b5af-41b7-9dcd-58698178f5e3"
+			}
+		},
+		"metadata": {
+			"saveOutput": true,
+			"synapse_widget": {
+				"version": "0.1"
+			},
+			"enableDebugMode": false,
+			"kernelspec": {
+				"name": "synapse_pyspark",
+				"display_name": "Synapse PySpark"
+			},
+			"language_info": {
+				"name": "python"
+			},
+			"a365ComputeOptions": {
+				"id": "/subscriptions/e2d3f9d2-fe25-4a6a-bccd-16e5d2933d82/resourceGroups/rgday3/providers/Microsoft.Synapse/workspaces/secwkspce289/bigDataPools/JDSparkPool289",
+				"name": "JDSparkPool289",
+				"type": "Spark",
+				"endpoint": "https://secwkspce289.dev.azuresynapse.net/livyApi/versions/2019-11-01-preview/sparkPools/JDSparkPool289",
+				"auth": {
+					"type": "AAD",
+					"authResource": "https://dev.azuresynapse.net",
+					"authHeader": null
+				},
+				"sparkVersion": "3.2",
+				"nodeCount": 3,
+				"cores": 4,
+				"memory": 28,
+				"extraHeader": null
+			},
+			"sessionKeepAliveTimeout": 30
+		},
+		"cells": [
+			{
+				"cell_type": "code",
+				"source": [
+					"txt = sc.textFile(\"wasbs://spark@dljdacc.blob.core.windows.net/KennedyInaugural.txt\")\r\n",
+					"txt.count()"
+				],
+				"attachments": null,
+				"execution_count": 1
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"txt.first()"
+				],
+				"attachments": null,
+				"execution_count": 2
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"fillTxt = txt.filter(lambda line:\"freedom\" in line)\r\n",
+					"fillTxt.count()"
+				],
+				"attachments": null,
+				"execution_count": 3
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"fillTxt.collect()"
+				],
+				"attachments": null,
+				"execution_count": 4
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"words = txt.flatMap(lambda txt: txt.split(\" \"))\r\n",
+					"counts = words.map(lambda word: (word, 1)).reduceByKey(lambda a, b: a + b)\r\n",
+					"counts.sortBy(lambda a: a[1], False).collect()"
+				],
+				"attachments": null,
+				"execution_count": 5
+			}
+		]
+	}
+}
