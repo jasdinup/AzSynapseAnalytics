@@ -1,0 +1,7 @@
+{
+	"name": "SHIR",
+	"properties": {
+		"type": "SelfHosted",
+		"description": "this will connect with my OnPrem Server JDSparkPool289"
+	}
+}
