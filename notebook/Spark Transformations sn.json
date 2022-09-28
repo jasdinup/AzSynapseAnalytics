@@ -17,7 +17,7 @@
 				"spark.dynamicAllocation.enabled": "false",
 				"spark.dynamicAllocation.minExecutors": "2",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "e3a2898a-9b94-48e2-b724-4797c0e4225e"
+				"spark.autotune.trackingId": "e3d06722-6104-4b3f-9725-ed0bb833f14f"
 			}
 		},
 		"metadata": {
@@ -70,7 +70,7 @@
 					"from pyspark.sql import functions as F\r\n",
 					"from pyspark.sql.window import Window"
 				],
-				"execution_count": 1
+				"execution_count": 24
 			},
 			{
 				"cell_type": "code",
@@ -98,7 +98,7 @@
 					"df = spark.createDataFrame(data=data, schema = columns)\r\n",
 					"display(df)"
 				],
-				"execution_count": 2
+				"execution_count": 25
 			},
 			{
 				"cell_type": "code",
@@ -115,12 +115,12 @@
 					"collapsed": false
 				},
 				"source": [
-					"from pyspark.sql.functions import concat, col, lit\r\n",
-					" \r\n",
-					"df = df.withColumn(\"concat_new\",concat(col(\"firstname\"), lit(\" \"), col(\"lastname\")))\r\n",
+					"#from pyspark.sql.functions import concat, col, lit\r\n",
+					"df = df.withColumn(\"concat_new\",F.concat(col(\"firstname\"), lit(\" \"), col(\"lastname\")))\r\n",
+					"#df = df.withColumn(\"concat_new\",concat(col(\"firstname\"), lit(\" \"), col(\"lastname\")))\r\n",
 					"display(df)"
 				],
-				"execution_count": 3
+				"execution_count": 26
 			},
 			{
 				"cell_type": "markdown",
